@@ -1,4 +1,3 @@
-cat << 'EOF' > job.sh
 #!/bin/bash
 #SBATCH --job-name=cifar10_cnn
 #SBATCH --partition=comp3710
@@ -12,4 +11,3 @@ source $HOME/miniconda3/bin/activate
 conda activate torch
 
 python Demo_2_Part_3_CNN.py
-EOF
