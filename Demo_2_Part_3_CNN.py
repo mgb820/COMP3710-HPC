@@ -14,12 +14,11 @@ transform_train = transforms.Compose(
     [
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
-        transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
         transforms.ToTensor(),
         transforms.Normalize(
             (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
         ),
-        transforms.RandomErasing(p=0.25, value="random"),  # Cutout regularizer
+        transforms.RandomErasing(p=0.2, scale=(0.02, 0.2), value='random'),  # Cutout regularizer
     ]
 )
 
@@ -63,8 +62,8 @@ def get_cifar_resnet18():
 model = get_cifar_resnet18().to(device)
 
 # 4. Training Hyperparameters & AMP Scaler
-epochs = 30
-max_lr = 0.2
+epochs = 35
+max_lr = 0.1
 weight_decay = 5e-4
 
 criterion = nn.CrossEntropyLoss()
