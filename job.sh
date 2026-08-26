@@ -2,7 +2,7 @@
 #SBATCH --job-name=cifar10_cnn
 #SBATCH --partition=comp3710
 #SBATCH --gres=gpu:1
-#SBATCH --mem=32G
+#SBATCH --mem=16G
 #SBATCH --time=00:30:00
 #SBATCH --output=cifar10_%j.out
 #SBATCH --error=cifar10_%j.err
