@@ -2,11 +2,12 @@ import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader
-from torchvision import datasets, transforms
+from torch.utils.data import Dataset, DataLoader
+from torchvision import transforms
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 import numpy as np
+from PIL import Image
 
 # 1. Setup & Hyperparameters
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -15,16 +16,34 @@ latent_dim = 2
 epochs = 30
 lr = 1e-3
 
-# Replace 'oasis' below with your exact subfolder from Step 1 check
-DATA_PATH = "/home/groups/comp3710/OASIS"
+DATA_PATH = "/home/groups/comp3710/OASIS/keras_png_slices_train"
+
+# Custom Dataset for flat image directories
+class OASISDataset(Dataset):
+    def __init__(self, img_dir, transform=None):
+        self.img_dir = img_dir
+        self.transform = transform
+        self.image_files = sorted([
+            f for f in os.listdir(img_dir) 
+            if f.lower().endswith(('.png', '.jpg', '.jpeg'))
+        ])
+
+    def __len__(self):
+        return len(self.image_files)
+
+    def __getitem__(self, idx):
+        img_path = os.path.join(self.img_dir, self.image_files[idx])
+        image = Image.open(img_path).convert("L")  # Convert to 1-channel Grayscale
+        if self.transform:
+            image = self.transform(image)
+        return image, 0
 
 transform = transforms.Compose([
-    transforms.Grayscale(num_output_channels=1),
     transforms.Resize((128, 128)),
     transforms.ToTensor(),
 ])
 
-dataset = datasets.ImageFolder(root=DATA_PATH, transform=transform)
+dataset = OASISDataset(img_dir=DATA_PATH, transform=transform)
 train_loader = DataLoader(
     dataset, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True
 )

@@ -10,4 +10,4 @@
 source $HOME/miniconda3/bin/activate
 conda activate torch
 
-python -u train_vae.py
+python -u vae.py
