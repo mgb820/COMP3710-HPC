@@ -16,7 +16,7 @@ epochs = 30
 lr = 1e-3
 
 # Replace 'oasis' below with your exact subfolder from Step 1 check
-DATA_PATH = "/home/groups/comp3710/oasis"
+DATA_PATH = "/home/groups/comp3710/OASIS"
 
 transform = transforms.Compose([
     transforms.Grayscale(num_output_channels=1),
