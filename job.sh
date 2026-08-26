@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=cnn
-#SBATCH --partition=a100
+#SBATCH --partition=p100
 #SBATCH --gres=gpu:1
 ##SBATCH --mem=16G
 #SBATCH --time=00:30:00
