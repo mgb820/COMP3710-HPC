@@ -2,6 +2,7 @@
 #SBATCH --job-name=cnn
 #SBATCH --partition=a100
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=4
 ##SBATCH --mem=16G
 #SBATCH --time=00:30:00
 #SBATCH --output=cnn_%j.out
