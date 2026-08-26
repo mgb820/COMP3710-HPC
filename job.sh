@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=cnn
-#SBATCH --partition=comp3710
+#SBATCH --partition=a100
 #SBATCH --gres=gpu:1
-#SBATCH --mem=16G
+##SBATCH --mem=16G
 #SBATCH --time=00:30:00
 #SBATCH --output=cnn_%j.out
 #SBATCH --error=cnn_%j.err
