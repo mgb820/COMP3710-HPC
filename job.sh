@@ -1,13 +1,15 @@
 #!/bin/bash
-#SBATCH --job-name=cifar10_cnn
-#SBATCH --partition=comp3710
+#SBATCH --job-name=cnn
+#SBATCH --partition=a100
 #SBATCH --gres=gpu:1
-#SBATCH --mem=16G
+##SBATCH --mem=16G
 #SBATCH --time=00:30:00
-#SBATCH --output=cifar10_%j.out
-#SBATCH --error=cifar10_%j.err
+#SBATCH --output=cnn_%j.out
+#SBATCH --error=cnn_%j.err
 
+# Activate your conda environment
 source $HOME/miniconda3/bin/activate
 conda activate torch
 
+# Run the script
 python Demo_2_Part_3_CNN.py
