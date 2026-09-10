@@ -26,7 +26,7 @@ def compute_dsc(pred, target, num_classes=NUM_CLASSES, eps=1e-7):
 print(f"--- OASIS UNet Live Demonstration ---")
 print(f"Running on Device: {device}")
 
-model = UNet(in_channels=1, out_channels=NUM_CLASSES).to(device)
+model = UNet(in_channels=1, num_classes=NUM_CLASSES).to(device)
 model.load_state_dict(torch.load(CHECKPOINT_PATH, map_location=device))
 model.eval()
 
