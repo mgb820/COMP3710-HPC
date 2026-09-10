@@ -33,8 +33,17 @@ model.eval()
 from torch.utils.data import DataLoader
 from unet_dataset import OASISDataset
 
-test_dataset = OASISDataset(img_dir="/path/to/keras_png_slices_test")
-test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
+test_dataset = OASISDataset(
+    root_dir="/home/groups/comp3710/OASIS/",
+    split="test",
+    one_hot=False  # Set to False if computing standard target class indexing
+)
+
+test_loader = torch.utils.data.DataLoader(
+    test_dataset, 
+    batch_size=16, 
+    shuffle=False
+)
 
 # 4. Fetch Demonstration Sample
 # Replace 'test_loader' with your active OASIS DataLoader instance
