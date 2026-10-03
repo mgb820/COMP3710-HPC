@@ -8,7 +8,7 @@ from torch_geometric.datasets import FacebookPagePage
 torch.manual_seed(0)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-dataset = FacebookPagePage(root="data/FacebookPagePage")
+dataset = FacebookPagePage(root="./data/FacebookPagePage")
 data = dataset[0]
 
 # ---------- 1. Data audit ----------
